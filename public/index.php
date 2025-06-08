@@ -14,8 +14,10 @@ const operation_dir = '/../app/operations/';
 // ##############################################################################################################################
 
 
-// TODO: push to github
 // TODO: make actions "current_route" type safe
+// TODO: add forums/users/posts cmps/operations
+// TODO: add jquery ajax requests
+
 
 
 switch ($request) {
