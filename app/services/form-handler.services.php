@@ -4,21 +4,20 @@ require_once __DIR__ . '/flash.services.php';
 
 function form_handler_post_create($conn, &$validation)
 {
-    require_once __DIR__ . '/user.services.php';
+    require_once __DIR__ . '/../models/user.model.php';
+    require_once __DIR__ . '/../models/post.model.php';
 
     $current_form = 'post_create_form';
-
 
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
     $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
     $forum = filter_input(INPUT_POST, 'forum', FILTER_SANITIZE_NUMBER_INT);
 
-    echo '<br>' . 'email:' . $email . '<br>';
-    echo 'title:' . $title . '<br>';
-    echo 'content:' . $content . '<br>';
-    echo 'forum:' . $forum . '<br>';
-
+    // echo '<br>' . 'email:' . $email . '<br>';
+    // echo 'title:' . $title . '<br>';
+    // echo 'content:' . $content . '<br>';
+    // echo 'forum:' . $forum . '<br>';
 
     if (empty($email)) {
         $validation[$current_form]['email']['error'] = true;
@@ -26,7 +25,7 @@ function form_handler_post_create($conn, &$validation)
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $validation[$current_form]['email']['error'] = true;
         $validation[$current_form]['email']['message'] = "Email is invalid";
-    } else if (!check_if_user_email_exists($conn, $email)) {
+    } else if (!check_user_exists_by_email($conn, $email)) {
         $validation[$current_form]['email']['error'] = true;
         $validation[$current_form]['email']['message'] = "Email does not exist";
     }
@@ -48,12 +47,7 @@ function form_handler_post_create($conn, &$validation)
 
     if (!has_validation_errors($validation[$current_form])) {
         try {
-            $sql = "INSERT INTO Posts (poster_email, title, content, forum_id) VALUES (?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssi", $email, $title, $content, $forum); // The argument may be one of four types: i - integer, d - double, s - string, b - BLOB
-            $stmt->execute();
-
-            if ($stmt->affected_rows > 0) {
+            if (create_post($conn, $email, $title, $content, $forum)) {
                 create_flash_message(FLASH_OPERATION_POST_CREATE, "Post created successfully", FLASH_SUCCESS);
             } else {
                 create_flash_message(FLASH_OPERATION_POST_CREATE, "Post creation failed", FLASH_ERROR);

@@ -24,7 +24,7 @@ if (!$res['error']) {
         }
     } catch (Exception $e) {
         create_flash_message(FLASH_OPERATION_FORUM_DELETE, "Forum deletion failed - database error", FLASH_ERROR);
+    } finally {
+        redirect_to_route_and_die($_POST['current_route']);
     }
 }
-
-redirect_to_route_and_die($_POST['current_route']);

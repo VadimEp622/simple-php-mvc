@@ -59,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_form'])) {
 
     <?php require_once __DIR__ . '/../components/navbar.php'; ?>
     <h1>Hello From Admin</h1>
+    <?php require_once __DIR__ . '/../components/user-list.php'; ?>
     <?php require_once __DIR__ . '/../components/forum-create-form.php'; ?>
     <?php require_once __DIR__ . '/../components/forum-list.php'; ?>
 

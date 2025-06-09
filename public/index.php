@@ -34,6 +34,9 @@ switch ($request) {
     case '/actions/forums/delete':
         require __DIR__ . operation_dir . 'actions/forums/delete.php';
         break;
+    case '/actions/users/delete':
+        require __DIR__ . operation_dir . 'actions/users/delete.php';
+        break;
 
 
     // ############################################################# DEFAULT ############################################################
