@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/db-conn.php';
 require_once __DIR__ . '/../services/flash.services.php';
-require_once __DIR__ . '/../services/forum.services.php';
+
 
 
 $current_cmp = 'forum-create-form';

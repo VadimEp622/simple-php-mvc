@@ -68,7 +68,7 @@ function form_handler_post_create($conn, &$validation)
 
 function form_handler_forum_create($conn, &$validation)
 {
-    require_once __DIR__ . '/forum.services.php';
+    require_once __DIR__ . '/../models/forum.model.php';
 
     $current_form = 'forum_create_form';
 
@@ -77,7 +77,7 @@ function form_handler_forum_create($conn, &$validation)
     if (empty($title)) {
         $validation[$current_form]['title']['error'] = true;
         $validation[$current_form]['title']['message'] = "Title is required";
-    } else if (check_if_forum_title_already_exists($conn, $title)) {
+    } else if (check_forum_exists_by_title($conn, $title)) {
         $validation[$current_form]['title']['error'] = true;
         $validation[$current_form]['title']['message'] = "Title already exists";
     }

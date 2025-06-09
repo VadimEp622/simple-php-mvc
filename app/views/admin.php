@@ -5,17 +5,6 @@ require_once __DIR__ . '/../services/flash.services.php';
 require_once __DIR__ . '/../services/form-handler.services.php';
 
 
-// TODO:
-// 1) add some bootstrap styling
-// 2) add user/forums components/operations 
-// 3) add sorting
-// 4) add try/catch to operations
-// 5) see if it's possible to dynamically update empty initialized $res/$validation arrays, based on imported components
-//      (and even better, see if it's possible to make some essential required file that will be included in every page, and that file will have the above mentioned arrays)
-// 6) fix flash messages causing layout to jump (for example, adding margin-block-end:16px to forms)
-// 7) research PSR compliance
-
-
 display_flash_message(FLASH_OPERATION_FORUM_CREATE);
 display_flash_message(FLASH_OPERATION_FORUM_DELETE);
 display_flash_message(FLASH_OPERATION_USER_DELETE);
