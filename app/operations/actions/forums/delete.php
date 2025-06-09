@@ -17,9 +17,7 @@ if (!is_numeric($id)) {
 
 if (!$res['error']) {
     try {
-        $is_deleted = delete_forum($conn, $id);
-
-        if ($is_deleted) {
+        if (delete_forum($conn, $id)) {
             create_flash_message(FLASH_OPERATION_FORUM_DELETE, "Forum deleted successfully", FLASH_SUCCESS);
         } else {
             create_flash_message(FLASH_OPERATION_FORUM_DELETE, "Forum deletion failed - no forum deleted", FLASH_ERROR);

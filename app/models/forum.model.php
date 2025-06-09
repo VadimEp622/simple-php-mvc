@@ -23,12 +23,21 @@ function fetch_forums($conn): array
     return $forums;
 }
 
-function check_forum_exists_by_title($conn, $forum_title): bool
+function check_forum_exists_by_title($conn, $title): bool
 {
     $sql = "SELECT * FROM Forums WHERE title = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $forum_title); // The argument may be one of four types: i - integer, d - double, s - string, b - BLOB
+    $stmt->bind_param("s", $title); // The argument may be one of four types: i - integer, d - double, s - string, b - BLOB
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->num_rows > 0;
+}
+
+function create_forum($conn, $title): bool
+{
+    $sql = "INSERT INTO Forums (title) VALUES (?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $title); // The argument may be one of four types: i - integer, d - double, s - string, b - BLOB
+    $stmt->execute();
+    return $stmt->affected_rows > 0;
 }

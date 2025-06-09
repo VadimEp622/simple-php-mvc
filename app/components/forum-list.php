@@ -7,6 +7,7 @@ require_once __DIR__ . '/../models/forum.model.php';
 $current_cmp = 'forum-list';
 $current_route = get_current_route_name();
 
+
 try {
     $res[$current_cmp]['forums'] = fetch_forums($conn);
     if (count($res[$current_cmp]['forums']) < 1) {

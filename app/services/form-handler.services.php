@@ -84,12 +84,7 @@ function form_handler_forum_create($conn, &$validation)
 
     if (!has_validation_errors($validation[$current_form])) {
         try {
-            $sql = "INSERT INTO Forums (title) VALUES (?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $title); // The argument may be one of four types: i - integer, d - double, s - string, b - BLOB
-            $stmt->execute();
-
-            if ($stmt->affected_rows > 0) {
+            if (create_forum($conn, $title)) {
                 create_flash_message(FLASH_OPERATION_FORUM_CREATE, "Forum created successfully", FLASH_SUCCESS);
             } else {
                 create_flash_message(FLASH_OPERATION_FORUM_CREATE, "Forum creation failed", FLASH_ERROR);
