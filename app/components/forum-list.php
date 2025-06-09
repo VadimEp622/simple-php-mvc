@@ -18,8 +18,6 @@ try {
     $res[$current_cmp]['error']   = true;
     $res[$current_cmp]['message'] = "Forums list fetch failed!";
 }
-
-
 ?>
 
 <section class="container-sm my-5" style="max-width: 500px;">

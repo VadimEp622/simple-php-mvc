@@ -7,6 +7,7 @@ require_once __DIR__ . '/../models/user.model.php';
 $current_cmp = 'user-list';
 $current_route = get_current_route_name();
 
+
 try {
     $res[$current_cmp]['users'] = fetch_users($conn);
     if (count($res[$current_cmp]['users']) < 1) {
@@ -25,7 +26,7 @@ try {
         <div class="d-flex gap-2">
             <p style="color: red;"><?= $res[$current_cmp]['message'] ?></p>
             <?php if (isset($res[$current_cmp]['users']) && count($res[$current_cmp]['users']) < 1) : ?>
-                <form action="operations/users/populate.php" method="post">
+                <form action="actions/users/populate" method="post">
                     <input type="hidden" name="current_route" value="<?= $current_route ?>">
                     <button>Populate demo users</button>
                 </form>

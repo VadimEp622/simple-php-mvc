@@ -14,16 +14,6 @@ function fetch_users($conn): array
     return $users;
 }
 
-function check_user_exists_by_email($conn, $email): bool
-{
-    $sql = "SELECT * FROM Users WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email); // The argument may be one of four types: i - integer, d - double, s - string, b - BLOB
-    $stmt->execute();
-    $result = $stmt->get_result();
-    return $result->num_rows > 0;
-}
-
 function create_user($conn, $full_name, $email, $password, $age, $phone_number): bool
 {
     $sql = "INSERT INTO Users (full_name, email, password, age, phone_number) VALUES (?, ?, ?, ?, ?)";
@@ -40,6 +30,16 @@ function delete_user($conn, $id): bool
     $stmt->bind_param("i", $id); // The argument may be one of four types: i - integer, d - double, s - string, b - BLOB
     $stmt->execute();
     return $stmt->affected_rows > 0;
+}
+
+function check_user_exists_by_email($conn, $email): bool
+{
+    $sql = "SELECT * FROM Users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email); // The argument may be one of four types: i - integer, d - double, s - string, b - BLOB
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->num_rows > 0;
 }
 
 function get_demo_users()

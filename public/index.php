@@ -15,7 +15,6 @@ const operation_dir = '/../app/operations/';
 
 
 // TODO: make actions "current_route" type safe
-// TODO: add forums/users/posts cmps/operations
 // TODO: add jquery ajax requests
 
 
@@ -37,7 +36,12 @@ switch ($request) {
     case '/actions/users/delete':
         require __DIR__ . operation_dir . 'actions/users/delete.php';
         break;
-
+    case '/actions/users/populate':
+        require __DIR__ . operation_dir . 'actions/users/populate.php';
+        break;
+    case '/actions/posts/delete':
+        require __DIR__ . operation_dir . 'actions/posts/delete.php';
+        break;
 
     // ############################################################# DEFAULT ############################################################
     default:
