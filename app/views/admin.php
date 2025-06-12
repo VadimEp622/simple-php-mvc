@@ -1,15 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../config/db-conn.php';
-require_once __DIR__ . '/../services/flash.services.php';
 require_once __DIR__ . '/../services/form-handler.services.php';
-
-
-display_flash_message(FLASH_OPERATION_FORUM_CREATE);
-display_flash_message(FLASH_OPERATION_FORUM_DELETE);
-display_flash_message(FLASH_OPERATION_USER_DELETE);
-display_flash_message(FLASH_OPERATION_POST_CREATE);
-display_flash_message(FLASH_OPERATION_POST_DELETE);
 
 
 $res = array(
@@ -56,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_form'])) {
 </head>
 
 <body>
-
+    <?php require_once __DIR__ . '/../components/flash-message.php'; ?>
     <?php require_once __DIR__ . '/../components/navbar.php'; ?>
     <h1>Hello From Admin</h1>
     <?php require_once __DIR__ . '/../components/user-list.php'; ?>

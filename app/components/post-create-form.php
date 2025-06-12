@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../config/db-conn.php';
-require_once __DIR__ . '/../services/flash.services.php';
 require_once __DIR__ . '/../models/forum.model.php';
 
 
@@ -18,7 +17,6 @@ try {
     $res[$current_cmp]['error']   = true;
     $res[$current_cmp]['message'] = "Forums list fetch failed!";
 }
-
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_form']) && $_POST['current_form'] == $current_form) {

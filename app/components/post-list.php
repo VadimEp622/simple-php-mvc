@@ -5,7 +5,6 @@ require_once __DIR__ . '/../models/post.model.php';
 
 
 $current_cmp = 'post-list';
-$current_route = get_current_route_name();
 
 
 try {
@@ -18,6 +17,7 @@ try {
     $res[$current_cmp]['error']   = true;
     $res[$current_cmp]['message'] = "Posts list fetch failed!";
 }
+
 ?>
 
 <section class="container my-5">
@@ -48,7 +48,7 @@ try {
                         <td><?= $value['poster_email'] ?></td>
                         <td>
                             <form action="actions/posts/delete" method="post" class="d-flex justify-content-center">
-                                <input type="hidden" name="current_route" value="<?= $current_route ?>">
+                                <input type="hidden" name="current_route" value=<?= get_current_route_name() ?>>
                                 <input type="hidden" name="id" value="<?= $value['id'] ?>">
                                 <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                             </form>

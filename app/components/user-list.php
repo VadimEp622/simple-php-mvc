@@ -5,7 +5,6 @@ require_once __DIR__ . '/../models/user.model.php';
 
 
 $current_cmp = 'user-list';
-$current_route = get_current_route_name();
 
 
 try {
@@ -18,6 +17,7 @@ try {
     $res[$current_cmp]['error']   = true;
     $res[$current_cmp]['message'] = "Users list fetch failed!";
 }
+
 ?>
 
 <section class="container my-5">
@@ -27,7 +27,7 @@ try {
             <p style="color: red;"><?= $res[$current_cmp]['message'] ?></p>
             <?php if (isset($res[$current_cmp]['users']) && count($res[$current_cmp]['users']) < 1) : ?>
                 <form action="actions/users/populate" method="post">
-                    <input type="hidden" name="current_route" value="<?= $current_route ?>">
+                    <input type="hidden" name="current_route" value=<?= get_current_route_name() ?>>
                     <button>Populate demo users</button>
                 </form>
             <?php endif ?>
@@ -55,7 +55,7 @@ try {
                             <td><?= $value['phone_number'] ?></td>
                             <td>
                                 <form action="actions/users/delete" method="post" class="d-flex justify-content-center">
-                                    <input type="hidden" name="current_route" value="<?= $current_route ?>">
+                                    <input type="hidden" name="current_route" value=<?= get_current_route_name() ?>>
                                     <input type="hidden" name="id" value="<?= $value['id'] ?>">
                                     <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                 </form>
