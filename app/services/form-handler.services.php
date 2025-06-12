@@ -55,7 +55,7 @@ function form_handler_post_create($conn, &$validation)
         } catch (Exception $e) {
             create_flash_message(FLASH_OPERATION_POST_CREATE, "Post creation failed", FLASH_ERROR);
         } finally {
-            redirect_to_current_page_and_die();
+            redirect_to_current_route_and_die();
         }
     }
 }
@@ -86,7 +86,7 @@ function form_handler_forum_create($conn, &$validation)
         } catch (Exception $e) {
             create_flash_message(FLASH_OPERATION_FORUM_CREATE, "Forum creation failed", FLASH_ERROR);
         } finally {
-            redirect_to_current_page_and_die();
+            redirect_to_current_route_and_die();
         }
     }
 }

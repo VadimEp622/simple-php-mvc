@@ -3,8 +3,12 @@
 // 'route_name' => 'route_value'
 const ROUTES = array('home' => '', 'admin' => 'admin');
 
+// TODO: change routes to -----> array('route_name' => array('label' => 'route_label', 'value' => 'route_value'))
+// so it can be "referenced", and used in various places in the app.
+// possible to scale/extend, by adding more keys to the inner array (like 'is_navbar_link' => true) 
 
-function redirect_to_current_page_and_die(): void
+
+function redirect_to_current_route_and_die(): void
 {
     $current_route = get_current_route_value();
     Header("Location: " . BASE_URL . $current_route);
