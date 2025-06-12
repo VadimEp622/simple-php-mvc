@@ -14,7 +14,6 @@ require_once __DIR__ . '/../services/form-handler.services.php';
 //      (and even better, see if it's possible to make some essential required file that will be included in every page, and that file will have the above mentioned arrays)
 // 6) fix flash messages causing layout to jump (for example, adding margin-block-end:16px to forms)
 // 7) research PSR compliance
-// 8) add post-create-form.php
 
 
 display_flash_message(FLASH_OPERATION_FORUM_CREATE);
@@ -71,6 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_form'])) {
     <?php require_once __DIR__ . '/../components/navbar.php'; ?>
     <h1>Hello From Home</h1>
     <?php require_once __DIR__ . '/../components/user-list.php'; ?>
+    <?php require_once __DIR__ . '/../components/post-create-form.php'; ?>
     <?php require_once __DIR__ . '/../components/post-list.php'; ?>
     <?php require_once __DIR__ . '/../components/forum-create-form.php'; ?>
     <?php require_once __DIR__ . '/../components/forum-list.php'; ?>
