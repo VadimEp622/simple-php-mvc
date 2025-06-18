@@ -16,8 +16,8 @@ const operation_dir = '/../app/operations/';
 
 // TODO: make actions "current_route" type safe
 // TODO: add jquery ajax requests
-echo $uri_route;
-echo '<br>';
+// echo $uri_route;
+// echo '<br>';
 
 
 
