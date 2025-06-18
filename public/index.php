@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../app/config/config.php';
 require_once __DIR__ . '/../app/services/utils.services.php';
 
-$request = rtrim(remove_string_prefix($_SERVER['REQUEST_URI'], rtrim(BASE_PATH, '/')), '/');
+$uri_route = get_uri_route();
 const view_dir = '/../app/views/';
 const operation_dir = '/../app/operations/';
 
@@ -16,10 +16,12 @@ const operation_dir = '/../app/operations/';
 
 // TODO: make actions "current_route" type safe
 // TODO: add jquery ajax requests
+echo $uri_route;
+echo '<br>';
 
 
 
-switch ($request) {
+switch ($uri_route) {
     // ############################################################# VIEWS ############################################################
     case '':
         require __DIR__ . view_dir . 'home.php';

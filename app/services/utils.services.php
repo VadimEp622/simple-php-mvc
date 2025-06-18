@@ -43,6 +43,11 @@ function get_current_route_value(): string
     return ROUTES[$current_route];
 }
 
+function get_uri_route(): string
+{
+    return rtrim(remove_string_prefix(parse_url($_SERVER['REQUEST_URI'])["path"], rtrim(BASE_PATH, '/')), '/');
+}
+
 function remove_string_prefix($string, $prefix)
 {
     if (substr($string, 0, strlen($prefix)) === $prefix) {
@@ -72,5 +77,7 @@ function print_organized_global_server_variable()
 // learning purposes
 function print_json($data)
 {
-    echo json_encode($data);
+    echo "<pre>";
+    echo var_dump($data);
+    echo "</pre>";
 }
