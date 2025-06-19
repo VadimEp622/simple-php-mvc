@@ -25,3 +25,9 @@ define('BASE_URL', 'http://localhost/proj-php/php-sql-exercise/php-with-routing/
 
 // Define the base path for the application (production will be empty string)
 define('BASE_PATH', '/proj-php/php-sql-exercise/php-with-routing/public/');
+
+
+
+// you can also structure a config file that returns an array:   
+// return ['database' => ['host'=>'localhost', ...], 'services'=> [...]]
+// and in another file, do $config=require('config.php');

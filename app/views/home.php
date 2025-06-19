@@ -11,6 +11,10 @@ require_once __DIR__ . '/../services/form-handler.services.php';
 // 4) see if it's possible to dynamically update empty initialized $res/$validation arrays, based on imported components
 //      (and even better, see if it's possible to make some essential required file that will be included in every page, and that file will have the above mentioned arrays)
 // 5) research PSR compliance
+// 6) change "posts" into "threads and posts", so that each forum, will have many threads, and each thread, will have many posts.
+//      * generally, forums are created by mods/admins
+//      * threads are created by a regular user
+//      * each thread will have a first post of the thread creator, and the next posts will continue to be made by users
 
 
 $res = array(
