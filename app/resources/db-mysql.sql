@@ -58,3 +58,16 @@ CREATE TABLE Threads (
     PRIMARY KEY (id),
     FOREIGN KEY (poster_email) REFERENCES Users(email)
 );
+
+-- Create Posts table
+CREATE TABLE Posts (
+    id int NOT NULL AUTO_INCREMENT,
+    thread_id int NOT NULL,
+    poster_email varchar(255) NOT NULL,
+    content text NOT NULL,
+    created_at datetime NOT NULL DEFAULT NOW(),
+    updated_at datetime NOT NULL DEFAULT NOW() ON UPDATE NOW(),
+    PRIMARY KEY (id),
+    FOREIGN KEY (thread_id) REFERENCES Threads(id) ON DELETE CASCADE,
+    FOREIGN KEY (poster_email) REFERENCES Users(email)
+)
