@@ -18,16 +18,16 @@ require_once __DIR__ . '/../services/form-handler.services.php';
 
 
 $res = array(
-    'post-create-form' => array('error' => false, 'message' => 'Template error message'),
+    'thread-create-form' => array('error' => false, 'message' => 'Template error message'),
     'forum-create-form' => array('error' => false, 'message' => 'Template error message'),
     'user-list' => array('error' => false, 'message' => 'Template error message'),
-    'post-list' => array('error' => false, 'message' => 'Template error message'),
+    'thread-list' => array('error' => false, 'message' => 'Template error message'),
     'forum-list' => array('error' => false, 'message' => 'Template error message')
 );
 
 
 $validation = array(
-    'post_create_form' => array(
+    'thread_create_form' => array(
         'title' => array('error' => false, 'message' => ''),
         'content' => array('error' => false, 'message' => ''),
         'forum' => array('error' => false, 'message' => ''),
@@ -41,7 +41,7 @@ $validation = array(
 
 // INFO: form handling on POST (validate and actual db action), happens here, before any output is made, for clean Header function redirections 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_form'])) {
-    if ($_POST['current_form'] == 'post_create_form') form_handler_post_create($conn,  $validation);
+    if ($_POST['current_form'] == 'thread_create_form') form_handler_thread_create($conn,  $validation);
     if ($_POST['current_form'] == 'forum_create_form') form_handler_forum_create($conn,  $validation);
 }
 
@@ -65,8 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_form'])) {
     <?php require_once __DIR__ . '/../components/navbar.php'; ?>
     <h1>Hello From Home</h1>
     <?php require_once __DIR__ . '/../components/user-list.php'; ?>
-    <?php require_once __DIR__ . '/../components/post-create-form.php'; ?>
-    <?php require_once __DIR__ . '/../components/post-list.php'; ?>
+    <?php require_once __DIR__ . '/../components/thread-create-form.php'; ?>
+    <?php require_once __DIR__ . '/../components/thread-list.php'; ?>
     <?php require_once __DIR__ . '/../components/forum-create-form.php'; ?>
     <?php require_once __DIR__ . '/../components/forum-list.php'; ?>
 

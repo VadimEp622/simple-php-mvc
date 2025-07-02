@@ -2,12 +2,12 @@
 require_once __DIR__ . '/utils.services.php';
 require_once __DIR__ . '/flash.services.php';
 
-function form_handler_post_create($conn, &$validation)
+function form_handler_thread_create($conn, &$validation)
 {
     require_once __DIR__ . '/../models/user.model.php';
-    require_once __DIR__ . '/../models/post.model.php';
+    require_once __DIR__ . '/../models/thread.model.php';
 
-    $current_form = 'post_create_form';
+    $current_form = 'thread_create_form';
 
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -47,13 +47,13 @@ function form_handler_post_create($conn, &$validation)
 
     if (!has_validation_errors($validation[$current_form])) {
         try {
-            if (create_post($conn, $email, $title, $content, $forum)) {
-                create_flash_message(FLASH_OPERATION_POST_CREATE, "Post created successfully", FLASH_SUCCESS);
+            if (create_thread($conn, $email, $title, $content, $forum)) {
+                create_flash_message(FLASH_OPERATION_THREAD_CREATE, "Thread created successfully", FLASH_SUCCESS);
             } else {
-                create_flash_message(FLASH_OPERATION_POST_CREATE, "Post creation failed", FLASH_ERROR);
+                create_flash_message(FLASH_OPERATION_THREAD_CREATE, "Thread creation failed", FLASH_ERROR);
             }
         } catch (Exception $e) {
-            create_flash_message(FLASH_OPERATION_POST_CREATE, "Post creation failed", FLASH_ERROR);
+            create_flash_message(FLASH_OPERATION_THREAD_CREATE, "Thread creation failed", FLASH_ERROR);
         } finally {
             redirect_to_current_route_and_die();
         }

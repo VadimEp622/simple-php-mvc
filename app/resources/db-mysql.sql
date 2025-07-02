@@ -46,8 +46,8 @@ CREATE TABLE Forums (
     UNIQUE (title)
 );
 
--- Create Posts table
-CREATE TABLE Posts (
+-- Create Threads table
+CREATE TABLE Threads (
     id int NOT NULL AUTO_INCREMENT,
     title varchar(255) NOT NULL,
     content text NOT NULL,

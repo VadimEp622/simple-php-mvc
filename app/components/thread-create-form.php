@@ -3,8 +3,8 @@ require_once __DIR__ . '/../config/db-conn.php';
 require_once __DIR__ . '/../models/forum.model.php';
 
 
-$current_cmp = 'post-create-form';
-$current_form = 'post_create_form';
+$current_cmp = 'thread-create-form';
+$current_form = 'thread_create_form';
 
 
 try {
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_form']) && $_P
 
 <section class="container my-5 d-flex justify-content-center">
     <div class="p-4 shadow border rounded">
-        <h3 class="mb-4">Create Post</h3>
+        <h3 class="mb-4">Create Thread</h3>
         <?php if ($res[$current_cmp]['error']) : ?>
             <section class="">
                 <div class="text-danger">Error</div>
@@ -40,6 +40,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_form']) && $_P
         <?php else : ?>
             <form method="post" class="">
                 <input type="hidden" name="current_form" value="<?= $current_form ?>">
+
+                <div class="row mb-3">
+                    <label for="forum" class="col-sm-3 col-form-label">Forum</label>
+                    <div class="col-sm-9">
+                        <select name="forum" class="form-select" aria-label="forum select">
+                            <option value='' selected>Select forum</option>
+                            <?php foreach ($res[$current_cmp]['forums'] as $forum) : ?>
+                                <option value="<?= $forum['id'] ?>"><?= $forum['title'] ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <?php if ($validation[$current_form]['forum']['error']) : ?>
+                        <div class="text-danger"><?= $validation[$current_form]['forum']['message'] ?></div>
+                    <?php endif ?>
+                </div>
 
                 <div class="row mb-3">
                     <label for="email" class="col-sm-3 col-form-label">Email</label>
@@ -68,21 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['current_form']) && $_P
                     </div>
                     <?php if ($validation[$current_form]['content']['error']) : ?>
                         <div class="text-danger"><?= $validation[$current_form]['content']['message'] ?></div>
-                    <?php endif ?>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="forum" class="col-sm-3 col-form-label">Forum</label>
-                    <div class="col-sm-9">
-                        <select name="forum" class="form-select" aria-label="forum select">
-                            <option value='' selected>Select forum</option>
-                            <?php foreach ($res[$current_cmp]['forums'] as $forum) : ?>
-                                <option value="<?= $forum['id'] ?>"><?= $forum['title'] ?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
-                    <?php if ($validation[$current_form]['forum']['error']) : ?>
-                        <div class="text-danger"><?= $validation[$current_form]['forum']['message'] ?></div>
                     <?php endif ?>
                 </div>
 

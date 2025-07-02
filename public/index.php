@@ -41,8 +41,8 @@ switch ($uri_route) {
     case '/actions/users/populate':
         require __DIR__ . operation_dir . 'actions/users/populate.php';
         break;
-    case '/actions/posts/delete':
-        require __DIR__ . operation_dir . 'actions/posts/delete.php';
+    case '/actions/threads/delete':
+        require __DIR__ . operation_dir . 'actions/threads/delete.php';
         break;
 
     // ############################################################# DEFAULT ############################################################
